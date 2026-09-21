@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  body {
+    margin: 0;
+    background: linear-gradient(#fff8dc, #ffe066);
+    overflow: hidden;
+    font-family: sans-serif;
+    text-align: center;
+  }
+  .flor {
+    position: absolute;
+    font-size: 40px;
+    animation: caer 6s linear infinite;
+  }
+  @keyframes caer {
+    0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(100vh) rotate(360deg); opacity: 0.8; }
+  }
+  #mensaje {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    font-size: 24px;
+    color: #b8860b;
+    font-weight: bold;
+    text-shadow: 1px 1px 3px #fff;
+  }
+</style>
+</head>
+<body>
+  <div id="mensaje">Toca la pantalla 🌻</div>
+
+<script>
+  const emojis = ["🌻","🌼","💛","🌻","✨"];
+  const frases = [
+    "Eres mi flor amarilla favorita 💛",
+    "Contigo todo florece 🌻",
+    "Te quiero más que a mil girasoles",
+    "Gracias por existir 🌼",
+    "Mi persona favorita ✨"
+  ];
+
+  function crearFlor() {
+    const f = document.createElement("div");
+    f.className = "flor";
+    f.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+    f.style.left = Math.random()*100 + "vw";
+    f.style.animationDuration = (3 + Math.random()*4) + "s";
+    document.body.appendChild(f);
+    setTimeout(()=>f.remove(), 7000);
+  }
+
+  setInterval(crearFlor, 400);
+
+  document.body.addEventListener("click", () => {
+    document.getElementById("mensaje").textContent =
+      frases[Math.floor(Math.random()*frases.length)];
+    for(let i=0;i<8;i++) setTimeout(crearFlor, i*100);
+  });
+</script>
+</body>
+</html>
